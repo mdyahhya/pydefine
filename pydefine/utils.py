@@ -164,7 +164,7 @@ def format_output(decoded_info: Dict[str, Any]) -> str:
         lines.append("")
     
     # Branding
-    branding = decoded_info.get("branding", "Powered by pyDefine ● Created by Yahya")
+    branding = decoded_info.get("branding", "Powered by pyDefine")
     lines.append("─" * 70)
     lines.append(f"✨ {branding} ✨")
     lines.append("=" * 70)
@@ -242,7 +242,7 @@ def tokenize_output(decoded_info: Dict[str, Any]) -> List[Dict[str, str]]:
         tokens.append({"type": "tags", "content": tags})
     
     # Branding token
-    branding = decoded_info.get("branding", "Powered by pyDefine ● Created by Yahya")
+    branding = decoded_info.get("branding", "Powered by pyDefine")
     tokens.append({"type": "branding", "content": branding})
     
     return tokens
