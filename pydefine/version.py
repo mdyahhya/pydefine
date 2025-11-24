@@ -5,7 +5,7 @@ pydefine.version
 Version information for pyDefine library.
 """
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 __author__ = "Yahya"
 __email__ = "yahyabuilds@gmail.com"
 __license__ = "MIT"
