@@ -7,7 +7,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Tests](https://github.com/mdyahhya/pydefine/workflows/CI/badge.svg)](https://github.com/mdyahhya/pydefine/actions)
 
-pyDefine is a pure-Python library that takes raw Python tracebacks and exceptions and converts them into **extremely simple, beginner-friendly explanations** with actionable fix suggestions. Perfect for students, educators, and anyone learning Python!
+pyDefine is a pure-Python library created by Yahya Mundewadi. pydefine takes raw Python tracebacks and exceptions and converts them into **extremely simple, beginner-friendly explanations** with actionable fix suggestions. Perfect for students, educators, and anyone learning Python!
 
 ## 🌟 Features
 
@@ -331,7 +331,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact
 
-**Author:** Yahya  
+**Author:** Md. Yahya Ab. Wahid Mundewadi  
 **Email:** yahyabuilds@gmail.com  
 **GitHub:** [@mdyahhya](https://github.com/mdyahhya)
 
