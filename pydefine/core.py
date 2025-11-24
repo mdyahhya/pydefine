@@ -109,4 +109,144 @@ def decode_exception(e: Exception) -> Dict[str, Any]:
     result["branding"] = "Powered by pyDefine"
     return result
 
-# ... rest of core.py (safe_run, decode_traceback_file, explain, quick_decode) remains unchanged except for any "branding" string to be "Powered by pyDefine"
+def safe_run(code: str, filename: str = "<input>", globals_dict: Optional[Dict] = None, locals_dict: Optional[Dict] = None) -> Dict[str, Any]:
+    if not isinstance(code, str):
+        return {
+            "success": False,
+            "error_type": "InvalidInput",
+            "original_message": "Code must be a string",
+            "simple_explanation": "The code input is not a valid string.",
+            "fix_suggestion": "Pass a string containing Python code",
+            "tags": ["invalid-input"],
+            "emoji": "❓",
+            "branding": "Powered by pyDefine"
+        }
+    
+    if not code.strip():
+        return {
+            "success": True,
+            "result": None,
+            "output": "",
+            "message": "No code to execute",
+            "branding": "Powered by pyDefine"
+        }
+    
+    if globals_dict is None:
+        globals_dict = {
+            "__builtins__": {
+                "print": print,
+                "len": len,
+                "range": range,
+                "int": int,
+                "float": float,
+                "str": str,
+                "bool": bool,
+                "list": list,
+                "dict": dict,
+                "tuple": tuple,
+                "set": set,
+                "abs": abs,
+                "min": min,
+                "max": max,
+                "sum": sum,
+                "sorted": sorted,
+                "reversed": reversed,
+                "enumerate": enumerate,
+                "zip": zip,
+                "map": map,
+                "filter": filter,
+                "round": round,
+                "pow": pow,
+                "isinstance": isinstance,
+                "type": type,
+                "dir": dir,
+                "help": help,
+            },
+            "__name__": "__main__",
+            "__file__": filename,
+        }
+    
+    if locals_dict is None:
+        locals_dict = {}
+    
+    import io
+    old_stdout = sys.stdout
+    sys.stdout = captured_output = io.StringIO()
+    
+    try:
+        compiled_code = compile(code, filename, 'exec')
+        exec(compiled_code, globals_dict, locals_dict)
+        output = captured_output.getvalue()
+        sys.stdout = old_stdout
+        return {
+            "success": True,
+            "result": locals_dict.get("result", None),
+            "output": output,
+            "message": "Code executed successfully",
+            "branding": "Powered by pyDefine"
+        }
+    except Exception as e:
+        sys.stdout = old_stdout
+        tb_lines = traceback.format_exception(type(e), e, e.__traceback__)
+        tb_text = ''.join(tb_lines)
+        decoded = decode_traceback(tb_text)
+        decoded["success"] = False
+        decoded["output"] = captured_output.getvalue()
+        return decoded
+
+
+def decode_traceback_file(filepath: str) -> Dict[str, Any]:
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            traceback_text = f.read()
+        return decode_traceback(traceback_text)
+    except FileNotFoundError:
+        return {
+            "success": False,
+            "error_type": "FileNotFoundError",
+            "original_message": f"File not found: {filepath}",
+            "simple_explanation": "The traceback file you specified doesn't exist.",
+            "fix_suggestion": f"Check if the file path '{filepath}' is correct",
+            "tags": ["file", "not-found"],
+            "emoji": "📁",
+            "branding": "Powered by pyDefine"
+        }
+    except Exception as e:
+        return {
+            "success": False,
+            "error_type": type(e).__name__,
+            "original_message": str(e),
+            "simple_explanation": f"Could not read the file: {str(e)}",
+            "fix_suggestion": "Check file permissions and format",
+            "tags": ["file", "read-error"],
+            "emoji": "📁",
+            "branding": "Powered by pyDefine"
+        }
+
+
+def explain(exception_or_traceback: Union[Exception, str]) -> str:
+    if isinstance(exception_or_traceback, BaseException):
+        decoded = decode_exception(exception_or_traceback)
+    elif isinstance(exception_or_traceback, str):
+        decoded = decode_traceback(exception_or_traceback)
+    else:
+        return "❓ Invalid input - pass an exception object or traceback string"
+    
+    emoji = decoded.get("emoji", "")
+    explanation = decoded.get("simple_explanation", "No explanation available")
+    return f"{emoji} {explanation}"
+
+
+def quick_decode(e: Exception) -> None:
+    decoded = decode_exception(e)
+    print("\n" + "="*70)
+    print(f"🔍 {decoded['error_type']}: {decoded['original_message']}")
+    print("="*70)
+    print(f"\n{decoded['emoji']} {decoded['simple_explanation']}\n")
+    print(f"💡 Fix: {decoded['fix_suggestion']}\n")
+    if decoded.get('line_number'):
+        print(f"📍 Line {decoded['line_number']}")
+        if decoded.get('file_name'):
+            print(f"📁 File: {decoded['file_name']}")
+    print("\n" + decoded['branding'])
+    print("="*70 + "\n")
