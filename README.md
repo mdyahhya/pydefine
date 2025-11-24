@@ -47,17 +47,17 @@ pip install -e ".[dev]"
 ### Basic Usage
 # import pydefine
 
-# That's it! Now all uncaught exceptions automatically show beginner-friendly explanations.
-# Just write your Python code normally:
+That's it! Now all uncaught exceptions automatically show beginner-friendly explanations.
+Just write your Python code normally:
 
 number = 10
 divisor = 0
 result = number / divisor  # This error will be automatically explained!
 
 Output (automatic):
-======================================================================
+
 ➗ ZeroDivisionError: division by zero
-======================================================================
+
 
 📖 What happened:
    You tried to divide a number by zero, which is impossible in math. 
@@ -76,47 +76,49 @@ Output (automatic):
 
 ──────────────────────────────────────────────────────────────────────
 ✨ Powered by pyDefine ✨
-======================================================================
+
 
 Command Line Interface
 
-# Run a Python file with error decoding
+**Run a Python file with error decoding**
 pydefine script.py
 
-# List all supported exceptions
+**List all supported exceptions**
 pydefine --list
 
-# Decode a log file
+**Decode a log file**
 pydefine --decode-log error.log
 
 ### API Reference 📖
-# Automatic Global Exception Handler
-# When you import pydefine, it automatically catches all uncaught exceptions and displays beginner-friendly explanations. No other code needed!
+**Automatic Global Exception Handler**
+**When you import pydefine, it automatically catches all uncaught exceptions and displays beginner-friendly explanations. No other code needed!**
 
-Advanced Functions (Optional)
+**Advanced Functions (Optional)**
 For advanced users who need more control, pyDefine also provides these functions:
 
 decode_traceback(traceback_text: str) -> Dict
 
 Decode a raw traceback string into beginner-friendly explanation.
 
-Returns:
+
+**Returns:**
 
 {
-    'error_type': 'ZeroDivisionError',
-    'original_message': 'division by zero',
-    'simple_explanation': 'You tried to divide a number by zero...',
-    'fix_suggestion': 'Check if the divisor is zero before dividing...',
-    'line_number': 5,
-    'file_name': 'script.py',
-    'tags': ['arithmetic', 'division', 'zero'],
-    'emoji': '➗',
-    'success': False,
-    'formatted_output': '...',
-    'branding': 'Powered by pyDefine'
+'error_type': 'ZeroDivisionError',
+'original_message': 'division by zero',
+'simple_explanation': 'You tried to divide a number by zero...',
+'fix_suggestion': 'Check if the divisor is zero before dividing...',
+'line_number': 5,
+'file_name': 'script.py',
+'tags': ['arithmetic', 'division', 'zero'],
+'emoji': '➗',
+'success': False,
+'formatted_output': '...',
+'branding': 'Powered by pyDefine'
 }
 
-decode_exception(e: Exception) -> Dict
+
+### `decode_exception(e: Exception) -> Dict`
 
 Decode an exception object directly.
 
