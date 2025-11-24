@@ -347,7 +347,7 @@ If pyDefine helped you, please:
 
 ---
 
-** Powered by pyDefine ● Created by Yahya **
+**Powered by pyDefine ● Created by Yahya**
 
 
 
