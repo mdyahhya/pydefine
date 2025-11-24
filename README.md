@@ -45,7 +45,7 @@ pip install -e ".[dev]"
 ## Quick Start 🚀
 
 ### Basic Usage
-import pydefine
+# import pydefine
 
 # That's it! Now all uncaught exceptions automatically show beginner-friendly explanations.
 # Just write your Python code normally:
