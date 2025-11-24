@@ -47,7 +47,7 @@ pip install -e ".[dev]"
 ### Basic Usage
 # import pydefine
 
-That's it! Now all uncaught exceptions automatically show beginner-friendly explanations.
+**That's it! Now all uncaught exceptions automatically show beginner-friendly explanations.**
 Just write your Python code normally:
 
 number = 10
@@ -74,7 +74,7 @@ Output (automatic):
 
 🏷️  Tags: arithmetic, division, zero, math
 
-──────────────────────────────────────────────────────────────────────
+
 ✨ Powered by pyDefine ✨
 
 
@@ -91,7 +91,7 @@ pydefine --decode-log error.log
 
 ### API Reference 📖
 **Automatic Global Exception Handler**
-**When you import pydefine, it automatically catches all uncaught exceptions and displays beginner-friendly explanations. No other code needed!**
+When you **import pydefine**, it automatically catches all uncaught exceptions and displays beginner-friendly explanations. No other code needed!
 
 **Advanced Functions (Optional)**
 For advanced users who need more control, pyDefine also provides these functions:
@@ -182,7 +182,7 @@ File: script.py
 Line: 5
 🏷️ Tags: key, dictionary, lookup, missing
 
-──────────────────────────────────────────────────────────────────────
+
  Powered by pyDefine ● Created by Yahya 
 
 
