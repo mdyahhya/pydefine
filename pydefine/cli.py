@@ -37,7 +37,7 @@ def run_file(filepath: str, verbose: bool = False) -> int:
     
     if not file_path.exists():
         print(f"❌ Error: File '{filepath}' not found")
-        print(f"\n Powered by {LIBRARY_NAME} ● Created by Yahya ")
+        print(f"\n Powered by {LIBRARY_NAME}")
         return 1
     
     if not file_path.suffix == '.py':
@@ -48,7 +48,7 @@ def run_file(filepath: str, verbose: bool = False) -> int:
             code = f.read()
     except Exception as e:
         print(f"❌ Error reading file: {e}")
-        print(f"\n Powered by {LIBRARY_NAME} ● Created by Yahya ")
+        print(f"\n Powered by {LIBRARY_NAME}")
         return 1
     
     print(f"🚀 Running: {filepath}")
@@ -65,7 +65,7 @@ def run_file(filepath: str, verbose: bool = False) -> int:
         print("✅ Code executed successfully!")
         if verbose:
             print(f"📊 Exit code: 0")
-        print(f"\n Powered by {LIBRARY_NAME} ● Created by Yahya ")
+        print(f"\n Powered by {LIBRARY_NAME}")
         return 0
     else:
         # Error occurred
@@ -112,7 +112,7 @@ def run_file(filepath: str, verbose: bool = False) -> int:
             print()
         
         print("─" * 70)
-        print(f"\n Powered by {LIBRARY_NAME} ● Created by Yahya")
+        print(f"\n Powered by {LIBRARY_NAME}")
         return 1
 
 
@@ -151,7 +151,7 @@ def list_exceptions_command(tag: Optional[str] = None) -> int:
         print(f"\n... and {TOTAL_EXCEPTIONS - len(common)} more!")
         print("\nUse --list-all to see complete list")
     
-    print(f"\n Powered by {LIBRARY_NAME} ● Created by Yahya ")
+    print(f"\n Powered by {LIBRARY_NAME}")
     return 0
 
 
@@ -180,7 +180,7 @@ def list_all_exceptions_command() -> int:
         print()
     
     print(f"✅ Total: {TOTAL_EXCEPTIONS} exceptions")
-    print(f"\n Powered by {LIBRARY_NAME} ● Created by Yahya")
+    print(f"\n Powered by {LIBRARY_NAME}")
     return 0
 
 
@@ -276,7 +276,7 @@ def main():
     
     # No file provided, show help
     parser.print_help()
-    print(f"\n Powered by {LIBRARY_NAME} ● Created by Yahya ")
+    print(f"\n Powered by {LIBRARY_NAME}")
     return 0
 
 
